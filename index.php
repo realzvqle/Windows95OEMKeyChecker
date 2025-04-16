@@ -6,8 +6,17 @@
     <title>Windows 95 Key Checker</title>
     <style>
         body {
+            background-color: black;
+            color: white;
             text-align: center;
             font-family: monospace;
+        }
+        input, button {
+            background-color: black;
+            color: white;
+            font-family: monospace;
+            border-color: cyan;
+            border-radius: 90px;
         }
         .fail {
             color: red;
@@ -80,6 +89,21 @@ if($firstnumofdyear == 3){
     
 }
 
+$fourthnumofdyear = (int)$parsed[0][3];
+$fifthnumofdyear = (int)$parsed[0][4];
+if(!isset($fourthnumofdyear) || !isset($fifthnumofdyear)){
+    PrintFailedResult("Date Tag must be an Integer");
+    die();
+}
+
+if($fourthnumofdyear != 9){
+    PrintFailedResult("The Product Key can NOT be newer then 1999 or older then 1995!");
+    die();
+}
+if($fifthnumofdyear > 9 || $fifthnumofdyear < 5){
+    PrintFailedResult("The Product Key can NOT be newer then 1999 or older then 1995!");
+    die();
+}
     
 PrintPassedResult("First Section Passed\n");
 
@@ -117,11 +141,6 @@ if(strlen($parsed[3]) != 5) {
 PrintPassedResult("Third Section Passed");
 
 PrintPassedResult("Congrats! $trimmed is a valid key!")
-
-
-
-
-
 
 
 
